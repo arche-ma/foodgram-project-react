@@ -1,0 +1,104 @@
+GEt http://127.0.0.1:8000/api/users/
+###
+get http://127.0.0.1:8000/api/tags/1/
+
+###
+get http://127.0.0.1:8000/api/ingredients/111
+###
+POSt  http://127.0.0.1:8000/api/auth/token/login/
+Content-Type: application/json
+
+{
+  "email": "a@ru.ru",
+  "password": "sergepassword123"
+}
+
+###
+
+GET  http://127.0.0.1:8000/api/recipes?author=2&limit=2
+//Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+
+
+###
+POST http://127.0.0.1:8000/api/recipes/
+Content-Type: application/json
+Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+{
+      "tags": [
+        1,3 
+      ],
+  
+      "ingredients": [
+        {
+          "id": 1,
+          "quantity": 7
+        }
+      ],
+      "name": "Сырой картофель",
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAgMAAABieywaAAAACVBMVEUAAAD///9fX1/S0ecCAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNoAAAAggCByxOyYQAAAABJRU5ErkJggg==",
+      "description": "Мой новый рецепт",
+      "cooking_time": 60
+}
+
+###
+PATCH  http://127.0.0.1:8000/api/recipes/37/
+Content-Type: application/json
+Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+
+{
+      "tags": [
+        1,2
+      ],
+  
+      "ingredients": [
+        {
+          "id": 1,
+          "quantity": 7
+        },
+        {"id": 1,
+        "quantity": 9}
+      ],
+      "name": "Картофель вкусный",
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAgMAAABieywaAAAACVBMVEUAAAD///9fX1/S0ecCAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNoAAAAggCByxOyYQAAAABJRU5ErkJggg==",
+      "description": "Главное хорошо посолить. А потом хорошо поесть",
+      "cooking_time": 55
+}
+
+
+###
+GET  http://127.0.0.1:8000/api/users/subscriptions/
+Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+
+###
+post  http://127.0.0.1:8000/api/users/2/subscribe/
+Content-Type: application/json
+Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+
+###
+DELETE  http://127.0.0.1:8000/api/users/2/subscribe/
+Content-Type: application/json
+Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+
+### 
+GET  http://127.0.0.1:8000/api/recipes/download_shopping_cart/
+//Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+###
+POST http://127.0.0.1:8000/api/recipes/2/favorite/
+Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+
+###
+DELETE http://127.0.0.1:8000/api/recipes/2/favorite/
+//Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+
+
+###
+POST http://127.0.0.1:8000/api/recipes/1/shopping_cart/
+//Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+
+###
+DELETE  http://127.0.0.1:8000/api/recipes/1/shopping_cart/
+//Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+
+###
+GET  http://127.0.0.1:8000/api/recipes/download_shopping_cart/
+//Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
