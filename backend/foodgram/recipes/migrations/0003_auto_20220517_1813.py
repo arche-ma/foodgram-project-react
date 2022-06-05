@@ -12,6 +12,8 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='ingredient',
-            options={'verbose_name': 'Ингредиент', 'verbose_name_plural': 'Ингредиенты'},
+            options={
+                'verbose_name': 'Ингредиент',
+                'verbose_name_plural': 'Ингредиенты'},
         ),
     ]

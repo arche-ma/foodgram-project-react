@@ -18,54 +18,86 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='shoppingcart',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='shopping_users', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='shopping_users',
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='recipe',
             name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recipes', to=settings.AUTH_USER_MODEL, verbose_name='Автор'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='recipes',
+                to=settings.AUTH_USER_MODEL,
+                verbose_name='Автор'),
         ),
         migrations.AddField(
             model_name='recipe',
             name='ingredients',
-            field=models.ManyToManyField(through='recipes.IngredientForRecipe', to='recipes.Ingredient', verbose_name='Ингредиенты'),
+            field=models.ManyToManyField(
+                through='recipes.IngredientForRecipe',
+                to='recipes.Ingredient',
+                verbose_name='Ингредиенты'),
         ),
         migrations.AddField(
             model_name='recipe',
             name='tags',
-            field=models.ManyToManyField(to='recipes.Tag', verbose_name='Тэги'),
+            field=models.ManyToManyField(
+                to='recipes.Tag',
+                verbose_name='Тэги'),
         ),
         migrations.AddField(
             model_name='ingredientforrecipe',
             name='ingredient',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipes.Ingredient', verbose_name='Ингредиент'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to='recipes.Ingredient',
+                verbose_name='Ингредиент'),
         ),
         migrations.AddField(
             model_name='ingredientforrecipe',
             name='recipe',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipes.Recipe'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to='recipes.Recipe'),
         ),
         migrations.AddField(
             model_name='ingredient',
             name='unit',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ingredients', to='recipes.Unit'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='ingredients',
+                to='recipes.Unit'),
         ),
         migrations.AddField(
             model_name='favorite',
             name='recipe',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='favorites', to='recipes.Recipe'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='favorites',
+                to='recipes.Recipe'),
         ),
         migrations.AddField(
             model_name='favorite',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='favorite_users', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='favorite_users',
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterUniqueTogether(
             name='shoppingcart',
-            unique_together={('user', 'recipe')},
+            unique_together={
+                (
+                    'user',
+                    'recipe')},
         ),
         migrations.AlterUniqueTogether(
             name='favorite',
-            unique_together={('user', 'recipe')},
+            unique_together={
+                (
+                    'user',
+                    'recipe')},
         ),
     ]

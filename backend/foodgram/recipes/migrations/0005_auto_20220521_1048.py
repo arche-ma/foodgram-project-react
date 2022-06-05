@@ -15,11 +15,15 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='recipe',
             name='in_favorites',
-            field=models.ManyToManyField(related_name='favorites', to=settings.AUTH_USER_MODEL),
+            field=models.ManyToManyField(
+                related_name='favorites',
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='recipe',
             name='in_shopping_card',
-            field=models.ManyToManyField(related_name='shopping_cart', to=settings.AUTH_USER_MODEL),
+            field=models.ManyToManyField(
+                related_name='shopping_cart',
+                to=settings.AUTH_USER_MODEL),
         ),
     ]

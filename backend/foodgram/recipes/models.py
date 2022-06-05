@@ -60,14 +60,14 @@ class IngredientForRecipe(models.Model):
                                    verbose_name='Ингредиент',
                                    on_delete=models.CASCADE)
     amount = models.IntegerField(verbose_name='Количество',
-                                 validators=[MinValueValidator(1)])
+                                 validators=[MinValueValidator(1)],
+                                 default=1)
     recipe = models.ForeignKey('Recipe', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
         unique_together = ('ingredient', 'recipe')
-    
 
     def __str__(self):
         return f'{self.ingredient.name} {self.amount}'
@@ -75,8 +75,7 @@ class IngredientForRecipe(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(verbose_name='Название',
-                            max_length=100,
-                            unique=True)
+                            max_length=100)
     unit = models.ForeignKey('Unit', related_name='ingredients',
                              on_delete=models.CASCADE)
 

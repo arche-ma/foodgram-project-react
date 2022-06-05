@@ -31,5 +31,5 @@ class IngredientInputSerializer(serializers.Serializer):
         if not Ingredient.objects.filter(pk=attrs['id']).exists():
             raise serializers.ValidationError(
                 'Такого ингредиента не существует'
-                )
+            )
         return super().validate(attrs)

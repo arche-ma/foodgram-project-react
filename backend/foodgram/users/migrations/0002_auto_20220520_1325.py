@@ -14,7 +14,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='following',
-            field=models.ManyToManyField(related_name='follower', to=settings.AUTH_USER_MODEL),
+            field=models.ManyToManyField(
+                related_name='follower',
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.DeleteModel(
             name='Follow',

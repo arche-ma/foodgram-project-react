@@ -11,7 +11,7 @@ class ShoppingCartViewSet(CreateDestroyViewSet):
 
     id_endpoint = 'recipe_id'
     model = Recipe
-    permission_classes = [IsAuthenticated,]
+    permission_classes = [IsAuthenticated, ]
 
     def create(self, request, *args, **kwargs):
         user = request.user
