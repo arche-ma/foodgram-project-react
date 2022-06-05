@@ -1,66 +1,67 @@
-GEt http://127.0.0.1:8000/api/users/
+GEt http://127.0.0.1/api/users/
 ###
 get http://127.0.0.1:8000/api/tags/1/
 
 ###
-get http://127.0.0.1:8000/api/ingredients/111
+get http://127.0.0.1/api/ingredients/
 ###
-POSt  http://127.0.0.1:8000/api/auth/token/login/
+POSt  http://127.0.0.1/api/auth/token/login/
 Content-Type: application/json
 
 {
-  "email": "a@ru.ru",
-  "password": "sergepassword123"
+  "email": "admin@a.ru",
+  "password": "password1234"
 }
 
 ###
 
-GET  http://127.0.0.1:8000/api/recipes?author=2&limit=2
+GET  http://127.0.0.1/api/recipes/1
 //Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
 
 
 ###
-POST http://127.0.0.1:8000/api/recipes/
+POST http://127.0.0.1/api/recipes/
 Content-Type: application/json
-Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+Authorization: Token 7562e53bbbc41eaf5cdf95af459e38d481fabb2f
+
 {
       "tags": [
-        1,3 
+        1
       ],
   
       "ingredients": [
         {
           "id": 1,
-          "quantity": 7
+          "amount": 7
         }
       ],
       "name": "Сырой картофель",
       "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAgMAAABieywaAAAACVBMVEUAAAD///9fX1/S0ecCAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNoAAAAggCByxOyYQAAAABJRU5ErkJggg==",
-      "description": "Мой новый рецепт",
+      "text": "Мой новый рецепт",
       "cooking_time": 60
 }
 
 ###
-PATCH  http://127.0.0.1:8000/api/recipes/37/
+PATCH  http://127.0.0.1/api/recipes/38/
 Content-Type: application/json
-Authorization: Token 0e561baee5a686a0acac7b8352c83e1c9992ca6f
+Authorization: Token 7562e53bbbc41eaf5cdf95af459e38d481fabb2f
 
 {
       "tags": [
-        1,2
+        1
       ],
   
       "ingredients": [
         {
           "id": 1,
-          "quantity": 7
+          "amount": 7
         },
         {"id": 1,
-        "quantity": 9}
+        "amount": 9}
       ],
-      "name": "Картофель вкусный",
+      "name": "Картофель вкусный 22",
       "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAgMAAABieywaAAAACVBMVEUAAAD///9fX1/S0ecCAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNoAAAAggCByxOyYQAAAABJRU5ErkJggg==",
-      "description": "Главное хорошо посолить. А потом хорошо поесть",
+      "text": "Главное хорошо посолить. А потом хорошо поесть",
       "cooking_time": 55
 }
 

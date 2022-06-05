@@ -7,9 +7,9 @@ pytest-django==4.4.0
 pytest-pythonpath==0.7.3
 django-filter==21.1
 django-rest-swagger==2.2.0
-djangorestframework-simplejwt==5.0.0
 gunicorn==20.0.4
-psycopg2-binary==2.9.2
+psycopg2-binary==2.8.6
 python-dotenv
 djoser==2.1.0
 django-extra-fields==3.0.2
+pillow==9.1.0

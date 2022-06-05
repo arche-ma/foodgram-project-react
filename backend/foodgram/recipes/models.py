@@ -1,6 +1,6 @@
-from django.db import models
 from django.contrib.auth import get_user_model
-
+from django.core.validators import MinValueValidator
+from django.db import models
 
 User = get_user_model()
 
@@ -10,19 +10,24 @@ class Recipe(models.Model):
                                verbose_name='Автор',
                                related_name='recipes',
                                on_delete=models.CASCADE)
-    in_favorites = models.ManyToManyField(User, related_name='favorites')
+    in_favorites = models.ManyToManyField(User, related_name='favorites',
+                                          blank=True)
     in_shopping_cart = models.ManyToManyField(User,
-                                              related_name='shopping_cart')
+                                              related_name='shopping_cart',
+                                              blank=True)
     name = models.CharField(verbose_name='Название',
+                            unique=True,
                             max_length=255)
     image = models.ImageField(verbose_name='Изображение')
     text = models.TextField(verbose_name='Описание')
     ingredients = models.ManyToManyField('Ingredient',
                                          through='IngredientForRecipe',
+                                         blank=False,
                                          verbose_name='Ингредиенты')
     tags = models.ManyToManyField('Tag',
-                                  verbose_name='Тэги')
-    cooking_time = models.SmallIntegerField(verbose_name='Время приготовления')
+                                  verbose_name='Тэги', blank=False)
+    cooking_time = models.SmallIntegerField(verbose_name='Время приготовления',
+                                            validators=[MinValueValidator(1)])
 
     class Meta:
         verbose_name = 'Рецепт'
@@ -34,10 +39,13 @@ class Recipe(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=50,
-                            verbose_name='Имя')
-    slug = models.SlugField(verbose_name='Слаг')
+                            verbose_name='Имя',
+                            unique=True)
+    slug = models.SlugField(verbose_name='Слаг',
+                            unique=True)
     hex_code = models.CharField(verbose_name='Цвет',
-                                max_length=7, default="#ffffff")
+                                max_length=7, default="#ffffff",
+                                unique=True)
 
     class Meta:
         verbose_name = 'Тэг'
@@ -51,20 +59,24 @@ class IngredientForRecipe(models.Model):
     ingredient = models.ForeignKey('Ingredient',
                                    verbose_name='Ингредиент',
                                    on_delete=models.CASCADE)
-    quantity = models.IntegerField(verbose_name='Количество')
+    amount = models.IntegerField(verbose_name='Количество',
+                                 validators=[MinValueValidator(1)])
     recipe = models.ForeignKey('Recipe', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
+        unique_together = ('ingredient', 'recipe')
+    
 
     def __str__(self):
-        return f'{self.ingredient.name} {self.quantity}'
+        return f'{self.ingredient.name} {self.amount}'
 
 
 class Ingredient(models.Model):
     name = models.CharField(verbose_name='Название',
-                            max_length=100)
+                            max_length=100,
+                            unique=True)
     unit = models.ForeignKey('Unit', related_name='ingredients',
                              on_delete=models.CASCADE)
 
@@ -78,7 +90,8 @@ class Ingredient(models.Model):
 
 class Unit(models.Model):
     name = models.CharField(max_length=255,
-                            verbose_name='Единица измерения')
+                            verbose_name='Единица измерения',
+                            unique=True)
 
     class Meta:
         verbose_name = 'Единица измерения'

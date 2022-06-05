@@ -1,6 +1,9 @@
 import csv
-from recipes.models import Ingredient, Unit
+
 from django.core.management.base import BaseCommand
+from django.db import IntegrityError
+from psycopg2 import IntegrityError
+from recipes.models import Ingredient, Unit
 
 
 class Command(BaseCommand):
@@ -16,9 +19,14 @@ class Command(BaseCommand):
         with open(path) as file:
             reader = csv.reader(file)
             for row in reader:
-                unit, _ = Unit.objects.get_or_create(name=row[1])
-                _, created = Ingredient.objects.get_or_create(
-                    name=row[0],
-                    unit=unit
-                )
+                try:
+                    unit, _ = Unit.objects.get_or_create(name=row[1])
+                    _, created = Ingredient.objects.get_or_create(
+                        name=row[0],
+                        unit=unit
+                    )
+                    print(f'ingredient {row[0]} was added')
+                except IntegrityError:
+                    print(f'ingredient {row[0]} caused integrity error')
+
         print('Ingredients model was populated')
