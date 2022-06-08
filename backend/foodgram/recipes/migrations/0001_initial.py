@@ -72,7 +72,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50, verbose_name='Имя')),
                 ('slug', models.SlugField(verbose_name='Слаг')),
                 ('hex_code', models.CharField(default='#ffffff',
-                                              max_length=7, verbose_name='Цвет')),
+                                              max_length=7,
+                                              verbose_name='Цвет')),
             ],
             options={
                 'verbose_name': 'Тэг',
