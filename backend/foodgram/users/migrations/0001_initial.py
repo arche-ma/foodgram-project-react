@@ -1,4 +1,4 @@
-import django.contrib.auth.validators
+import django.contrib.auth.validators as validators
 import django.db.models.deletion
 import django.utils.timezone
 from django.conf import settings
