@@ -8,5 +8,4 @@ class CreateDestroyViewSet(GenericViewSet,
 
     def _get_entity_by_id(self):
         pk = self.kwargs.get(self.id_endpoint)
-        instance = get_object_or_404(self.model, pk=pk)
-        return instance
+        return get_object_or_404(self.model, pk=pk)
