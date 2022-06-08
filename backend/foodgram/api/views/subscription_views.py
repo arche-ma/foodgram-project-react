@@ -1,13 +1,11 @@
 from api.pagination import CustomPageNumberPagination
 from api.serializers.subscription_serializers import SubscriptionsSerializer
-from django.contrib.auth import get_user_model
 from rest_framework import status, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from users.models import User
 
 from .mixins import CreateDestroyViewSet
-
-User = get_user_model()
 
 
 class SubscriptionsViewSet(viewsets.ReadOnlyModelViewSet):

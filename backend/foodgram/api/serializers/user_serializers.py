@@ -12,10 +12,6 @@ class UserCreateSerializer(UserCreateSerializer):
                   'first_name', 'last_name', 'password', 'is_subscribed')
 
     def get_is_subscribed(self, obj):
-        print(self.context)
         user = self.context['request'].user
-        if not user.is_authenticated:
-            return False
-        if obj in user.following.all():
-            return True
-        return False
+        return (user.is_authenticated
+                and obj in user.following.all())

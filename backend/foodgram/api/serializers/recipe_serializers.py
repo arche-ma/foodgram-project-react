@@ -20,21 +20,19 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ['id', 'tags', 'author', 'ingredients', 'name',
+        fields = ('id', 'tags', 'author', 'ingredients', 'name',
                   'is_favorited', 'is_in_shopping_cart',
-                  'image', 'text', 'cooking_time']
+                  'image', 'text', 'cooking_time')
 
     def get_is_favorited(self, obj):
         user = self.context['request'].user
-        if not user.is_authenticated:
-            return False
-        return obj in user.favorites.all()
+        return (user.is_authenticated and
+                obj in user.favorites.all())
 
     def get_is_in_shopping_cart(self, obj):
         user = self.context['request'].user
-        if not user.is_authenticated:
-            return False
-        return obj in user.shopping_cart.all()
+        return (user.is_authenticated and
+                obj in user.shopping_cart.all())
 
 
 class RecipeInputSerializer(serializers.ModelSerializer):
@@ -47,8 +45,8 @@ class RecipeInputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ['tags', 'ingredients', 'name',
-                  'text', 'cooking_time', 'image']
+        fields = ('tags', 'ingredients', 'name',
+                  'text', 'cooking_time', 'image')
 
     def validate(self, attrs):
         if (self.context['request'].method == 'POST'
@@ -118,4 +116,4 @@ class ShortRecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ['id', 'name', 'image', 'cooking_time']
+        fields = ('id', 'name', 'image', 'cooking_time')

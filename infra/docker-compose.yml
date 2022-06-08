@@ -6,7 +6,7 @@ services:
         - postgres_data:/var/lib/postgresql/data/
     restart: always
     env_file:
-        - ../backend/foodgram/.env
+        - .env
   frontend:
     build:
       context: ../frontend
@@ -14,9 +14,7 @@ services:
     volumes:
       - ../frontend/:/app/result_build/
   web:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
+    image: archema/web:latest
     restart: always
     volumes:
         - static_value:/app/backend_static/
@@ -24,7 +22,7 @@ services:
     depends_on:
         - db
     env_file:
-        - ../backend/foodgram/.env
+        - .env
   nginx:
     image: nginx:1.19.3
     ports:

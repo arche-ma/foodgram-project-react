@@ -13,6 +13,7 @@ class TagInline(admin.TabularInline):
     extra = 1
 
 
+@admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     inlines = [IngredientForRecipeInline, TagInline]
     exclude = ['tags']
@@ -21,4 +22,3 @@ class RecipeAdmin(admin.ModelAdmin):
 admin.site.register(Tag)
 admin.site.register(Ingredient)
 admin.site.register(Unit)
-admin.site.register(Recipe, RecipeAdmin)
