@@ -1,5 +1,5 @@
 
-name: Django-yamdb workflow
+name: Foodgram workflow
 
 on: [push]
 
