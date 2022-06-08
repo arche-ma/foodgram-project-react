@@ -21,6 +21,7 @@ jobs:
         pip install -r backend/foodgram/requirements.txt 
     - name: Test with flake8 and django tests
       run: |
+        ls
         python -m flake8
         pytest
         cd foodgram
