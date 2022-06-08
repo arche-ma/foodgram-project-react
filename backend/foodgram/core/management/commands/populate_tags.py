@@ -1,7 +1,6 @@
 import csv
 
 from django.core.management.base import BaseCommand
-
 from recipes.models import Tag
 
 
@@ -18,6 +17,7 @@ class Command(BaseCommand):
         with open(path) as file:
             reader = csv.reader(file)
             for row in reader:
-                Tag.objects.get_or_create(name=row[0],slug=row[1], hex_code=row[2] )
+                Tag.objects.get_or_create(name=row[0],
+                                          slug=row[1], hex_code=row[2])
 
         print('Tag model was populated')

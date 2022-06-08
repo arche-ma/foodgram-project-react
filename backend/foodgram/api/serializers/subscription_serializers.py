@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from recipes.models import Recipe
 from rest_framework.serializers import SerializerMethodField
 from users.models import User
