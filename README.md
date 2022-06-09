@@ -8,7 +8,7 @@ http://51.250.29.38/
 
 ##
 
-![example workflow](https://github.com/arche-ma/foodgram-project-react/actions/workflows/foodgram_workflow/badge.svg)
+![example workflow](https://github.com/arche-ma/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
 
 
 ## Автор проекта
